@@ -53,8 +53,8 @@ const Wrapper = styled.div`
   width: 537px;
 
 
-  @media (max-width: 375px) {
-    width: 375px;
+  @media (max-width: 500px) {
+    width: 500px;
     padding: 25px;
   }
 
@@ -145,10 +145,10 @@ const Wrapper = styled.div`
     background-color: hsl(223, 31%, 20%);
     border-radius: 16px;
 
-    @media (max-width: 375px) {
+    @media (max-width: 500px) {
       grid-template-columns: repeat(4, 60px);
 
-      gap: 15px;
+      gap: 25px;
     }
 
     button {
@@ -177,7 +177,7 @@ const Wrapper = styled.div`
         color: white;
       }
 
-      @media (max-width: 375px) {
+      @media (max-width: 500px) {
         padding: 6px 12px;
         font-size: 16px;
       }
