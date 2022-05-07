@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-export default function Main() {
+export default function Main({setChangeColor}) {
+  const [changeTheme, setChangeTheme] = useState(1)
   return (
-    <Wrapper>
+    <Wrapper changeTheme={changeTheme}>
       <header>
         <p className="logo">calc</p>
         <div className="themes">
           <p className="text-theme">THEME</p>
           <div className="theme">
             <div className="theme__numbers">
-              <p>1</p>
-              <p>2</p>
-              <p>3</p>
+              <p onClick={() => {setChangeTheme(1); setChangeColor(1)}}>1</p>
+              <p onClick={() => {setChangeTheme(2); setChangeColor(2)}}>2</p>
+              <p onClick={() => {setChangeTheme(3); setChangeColor(3)}}>3</p>
             </div>
             <div className="theme-box">
-              <div className="theme-circle"></div>
+              <div onClick={() => {setChangeTheme(1); setChangeColor(1)}} className="theme-circle"></div>
+              <div onClick={() => {setChangeTheme(2); setChangeColor(2)}} className="theme-circle"></div>
+              <div onClick={() => {setChangeTheme(3); setChangeColor(3)}} className="theme-circle"></div>
             </div>
           </div>
         </div>
@@ -52,7 +55,6 @@ export default function Main() {
 const Wrapper = styled.div`
   width: 537px;
 
-
   @media (max-width: 500px) {
     width: 500px;
     padding: 25px;
@@ -68,7 +70,15 @@ const Wrapper = styled.div`
       font-size: 24px;
       font-weight: 700;
       letter-spacing: 1px;
-      color: white;
+      color: ${({ changeTheme }) => {
+        if (changeTheme === 1) {
+          return "white";
+        } else if (changeTheme === 2) {
+          return "hsl(60, 10%, 19%)";
+        } else if (changeTheme === 3) {
+          return "hsl(52, 100%, 62%)";
+        }
+      }};
     }
 
     .themes {
@@ -77,7 +87,15 @@ const Wrapper = styled.div`
       gap: 15px;
 
       .text-theme {
-        color: white;
+        color: ${({ changeTheme }) => {
+          if (changeTheme === 1) {
+            return "white";
+          } else if (changeTheme === 2) {
+            return "hsl(60, 10%, 19%)";
+          } else if (changeTheme === 3) {
+            return "hsl(52, 100%, 62%)";
+          }
+        }};
         font-size: 12px;
         font-weight: 700;
         letter-spacing: 1px;
@@ -95,18 +113,34 @@ const Wrapper = styled.div`
           display: flex;
           gap: 12px;
           p {
-            color: white;
+            color: ${({ changeTheme }) => {
+              if (changeTheme === 1) {
+                return "white";
+              } else if (changeTheme === 2) {
+                return "hsl(60, 10%, 19%)";
+              } else if (changeTheme === 3) {
+                return "hsl(52, 100%, 62%)";
+              }
+            }};
             font-size: 12px;
             font-weight: 700;
             letter-spacing: 1px;
             cursor: pointer;
           }
         }
-      
+
         .theme-box {
           width: 72px;
-
-          background-color: hsl(223, 31%, 20%);
+          display: flex;
+          background-color: ${({ changeTheme }) => {
+            if (changeTheme === 1) {
+              return "hsl(223, 31%, 20%)";
+            } else if (changeTheme === 2) {
+              return "hsl(0, 5%, 81%)";
+            } else if (changeTheme === 3) {
+              return "hsl(268, 71%, 12%)";
+            }
+          }};
           border-radius: 16px;
           padding: 4px;
           cursor: pointer;
@@ -115,9 +149,26 @@ const Wrapper = styled.div`
             transform: translateX(0px);
             width: 20px;
             height: 20px;
-            background-color: hsl(6, 63%, 50%);
             border-radius: 100%;
             cursor: pointer;
+
+            &:nth-child(1) {
+              background-color: hsl(6, 63%, 50%);
+              box-shadow: 1px 2px hsl(6, 70%, 34%);
+
+              opacity: ${({ changeTheme }) => (changeTheme === 1 ? "1" : "0")};
+            }
+
+            &:nth-child(2) {
+              background-color: hsl(25, 98%, 40%);
+              box-shadow: 1px 2px hsl(25, 99%, 27%);
+              opacity: ${({ changeTheme }) => (changeTheme === 2 ? "1" : "0")};
+            }
+            &:nth-child(3) {
+              background-color: hsl(176, 100%, 44%);
+              box-shadow: 1px 2px hsl(177, 92%, 70%);
+              opacity: ${({ changeTheme }) => (changeTheme === 3 ? "1" : "0")};
+            }
           }
         }
       }
@@ -127,11 +178,27 @@ const Wrapper = styled.div`
   .screen {
     width: 100%;
     padding: 39px 37px;
-    background-color: hsl(224, 36%, 15%);
+    background-color: ${({ changeTheme }) => {
+      if (changeTheme === 1) {
+        return "hsl(224, 36%, 15%)";
+      } else if (changeTheme === 2) {
+        return "hsl(0, 0%, 93%)";
+      } else if (changeTheme === 3) {
+        return "hsl(268, 71%, 12%)";
+      }
+    }};
     border-radius: 16px;
     font-size: 36px;
     text-align: right;
-    color: white;
+    color: ${({ changeTheme }) => {
+      if (changeTheme === 1) {
+        return "white";
+      } else if (changeTheme === 2) {
+        return "hsl(60, 10%, 19%)";
+      } else if (changeTheme === 3) {
+        return "hsl(52, 100%, 62%)";
+      }
+    }};
     margin-bottom: 24px;
   }
 
@@ -142,7 +209,15 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     gap: 25px;
-    background-color: hsl(223, 31%, 20%);
+    background-color: ${({ changeTheme }) => {
+      if (changeTheme === 1) {
+        return "hsl(223, 31%, 20%)";
+      } else if (changeTheme === 2) {
+        return "hsl(0, 5%, 81%)";
+      } else if (changeTheme === 3) {
+        return "hsl(268, 71%, 12%)";
+      }
+    }};
     border-radius: 16px;
 
     @media (max-width: 500px) {
@@ -156,25 +231,95 @@ const Wrapper = styled.div`
       font-size: 18px;
       font-weight: 700;
       cursor: pointer;
-      color: hsl(221, 14%, 31%);
-      background-color: hsl(30, 25%, 89%);
+      color: ${({ changeTheme }) => {
+        if (changeTheme === 1) {
+          return "hsl(221, 14%, 31%)";
+        } else if (changeTheme === 2) {
+          return "hsl(60, 10%, 19%)";
+        } else if (changeTheme === 3) {
+          return "hsl(52, 100%, 62%)";
+        }
+      }};
       border: none;
       border-radius: 8px;
-      box-shadow: 0 4px hsl(28, 16%, 65%);
-      &:nth-child(18), &:nth-child(17) {
+
+      background-color: ${({ changeTheme }) => {
+        if (changeTheme === 1) {
+          return "hsl(30, 25%, 89%)";
+        } else if (changeTheme === 2) {
+          return "hsl(45, 7%, 89%)";
+        } else if (changeTheme === 3) {
+          return "hsl(268, 47%, 21%)";
+        }
+      }};
+      box-shadow: 0 4px
+        ${({ changeTheme }) => {
+          if (changeTheme === 1) {
+            return "hsl(28, 16%, 65%)";
+          } else if (changeTheme === 2) {
+            return "hsl(35, 11%, 61%)";
+          } else if (changeTheme === 3) {
+            return "hsl(290, 70%, 36%)";
+          }
+        }};
+      &:nth-child(18),
+      &:nth-child(17) {
         grid-column: span 2;
       }
 
-      &:nth-child(4), &:nth-child(17) {
-        background-color: hsl(225, 21%, 49%);
-        box-shadow: 0 4px hsl(224, 28%, 35%);
+      &:nth-child(4),
+      &:nth-child(17) {
+        background-color: ${({ changeTheme }) => {
+          if (changeTheme === 1) {
+            return "hsl(225, 21%, 49%)";
+          } else if (changeTheme === 2) {
+            return "hsl(185, 42%, 37%)";
+          } else if (changeTheme === 3) {
+            return "hsl(281, 89%, 26%)";
+          }
+        }};
+        box-shadow: 0 4px
+          ${({ changeTheme }) => {
+            if (changeTheme === 1) {
+              return "hsl(224, 28%, 35%)";
+            } else if (changeTheme === 2) {
+              return "hsl(185, 58%, 25%)";
+            } else if (changeTheme === 3) {
+              return "hsl(285, 91%, 52%)";
+            }
+          }};
         color: white;
       }
 
       &:last-child {
-        background-color: hsl(6, 63%, 50%);
-        box-shadow: 0 4px hsl(6, 70%, 34%) ;
-        color: white;
+        background-color: ${({ changeTheme }) => {
+          if (changeTheme === 1) {
+            return "hsl(6, 63%, 50%)";
+          } else if (changeTheme === 2) {
+            return "hsl(25, 98%, 40%)";
+          } else if (changeTheme === 3) {
+            return "hsl(176, 100%, 44%)";
+          }
+        }};
+        box-shadow: 0 4px
+          ${({ changeTheme }) => {
+            if (changeTheme === 1) {
+              return "hsl(6, 70%, 34%)";
+            } else if (changeTheme === 2) {
+              return "hsl(25, 99%, 27%)";
+            } else if (changeTheme === 3) {
+              return "hsl(177, 92%, 70%)";
+            }
+          }};
+        color: ${({ changeTheme }) => {
+          if (changeTheme === 1) {
+            return "white";
+          } else if (changeTheme === 2) {
+            return "white";
+          } else if (changeTheme === 3) {
+            return "hsl(198, 20%, 13%)";
+          }
+        }};
       }
 
       @media (max-width: 500px) {
