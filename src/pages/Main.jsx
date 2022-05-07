@@ -55,6 +55,10 @@ export default function Main({setChangeColor}) {
 const Wrapper = styled.div`
   width: 537px;
 
+  * {
+    user-select: none;
+  }
+
   @media (max-width: 500px) {
     width: 500px;
     padding: 25px;
