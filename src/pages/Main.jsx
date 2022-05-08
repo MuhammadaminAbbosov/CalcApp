@@ -306,7 +306,7 @@ const Wrapper = styled.div`
           return "hsl(268, 47%, 21%)";
         }
       }};
-      box-shadow: 0 4px
+      box-shadow: 2px 4px
         ${({ changeTheme }) => {
           if (changeTheme === 1) {
             return "hsl(28, 16%, 65%)";
@@ -332,7 +332,7 @@ const Wrapper = styled.div`
             return "hsl(281, 89%, 26%)";
           }
         }};
-        box-shadow: 0 4px
+        box-shadow: 2px 4px
           ${({ changeTheme }) => {
             if (changeTheme === 1) {
               return "hsl(224, 28%, 35%)";
@@ -355,7 +355,7 @@ const Wrapper = styled.div`
             return "hsl(176, 100%, 44%)";
           }
         }};
-        box-shadow: 0 4px
+        box-shadow: 2px 4px
           ${({ changeTheme }) => {
             if (changeTheme === 1) {
               return "hsl(6, 70%, 34%)";
